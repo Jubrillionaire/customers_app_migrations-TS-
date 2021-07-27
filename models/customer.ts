@@ -2,7 +2,7 @@ import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '.';
 
 interface CustomerAttributes {
-  id: number;
+  id: string;
   firstname: string;
   lastname: string;
   email: string;
@@ -32,8 +32,10 @@ const Customer = sequelize.define<CustomerInstance>(
   'Customer',
   {
     id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.UUID,
+      unique: true,
     },
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
